@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { Profile } from "../profile";
+import { UiButton } from "../uikit/ui-button";
+import { ArrowDownIcon } from "./arrow-down-icon";
 import logoSrc from "./logo.svg";
-import { ArrowDownIcon } from './arrow-down-icon'
 
 export function Header() {
   return (
@@ -9,13 +10,13 @@ export function Header() {
       <Image src={logoSrc} alt="logo" />
       <div className="w-px h-8 bg-slate-200 mx-6"></div>
 
-      <button className="w-44 bg-teal-600 text-white rounded-lg px-5 py-2 text-2xl leading-tight hover:bg-teal-500 transition-colors">
+      <UiButton className="w-44" variant="primary" size='lg'>
         Играть
-      </button>
+      </UiButton>
 
       <button className="ml-auto flex items-center gap-2  text-teal-600">
-        <Profile  />
-        <ArrowDownIcon/>
+        <Profile />
+        <ArrowDownIcon />
       </button>
     </header>
   );

@@ -3,9 +3,9 @@ import { UiButton } from "../uikit/ui-button";
 import { GameSymbol } from "./game-symbol";
 import { useGameState } from "./use-game-state";
 
-export function GameField({ className, playersCount }) {
-  const { cells, currentMove, nextMove, handleCellClick } = useGameState(playersCount);
+export function GameField({ className, cells, currentMove, nextMove, handleCellClick, winnerSequence }) {
 
+  
 
   const actions = (
     <>
@@ -32,6 +32,7 @@ export function GameField({ className, playersCount }) {
             onClick={() => {
               handleCellClick(i);
             }}
+            isWinner={winnerSequence?.includes(i)}
           >
             {symbol && <GameSymbol symbol={symbol} className="w-5 h-5" />}
           </GameCell>
@@ -41,11 +42,11 @@ export function GameField({ className, playersCount }) {
   );
 }
 
-function GameCell({ children, onClick }) {
+function GameCell({ children, onClick, isWinner }) {
   return (
     <button
       onClick={onClick}
-      className="border border-slate-200 -ml-px -mt-px flex items-center justify-center"
+      className={clsx(isWinner && 'bg-orange-600/10', "border border-slate-200 -ml-px -mt-px flex items-center justify-center")}
     >
       {children}
     </button>

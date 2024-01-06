@@ -1,9 +1,9 @@
 import clsx from "clsx";
 import { UiButton } from "../uikit/ui-button";
 import { GameSymbol } from "./game-symbol";
-import { useGameState } from "./use-game-state";
+// import { useGameState } from "./use-game-state";
 
-export function GameField({ className, cells, currentMove, nextMove, handleCellClick, winnerSequence }) {
+export function GameField({ className, cells, currentMove, nextMove, handleCellClick, winnerSequence,winnerSymbol }) {
 
   
 
@@ -33,8 +33,9 @@ export function GameField({ className, cells, currentMove, nextMove, handleCellC
               handleCellClick(i);
             }}
             isWinner={winnerSequence?.includes(i)}
+            disabled={!!winnerSymbol}
           >
-            {symbol && <GameSymbol symbol={symbol} className="w-5 h-5" />}
+            {symbol && <GameSymbol symbol={symbol} className="w-5 h-5"  />}
           </GameCell>
         ))}
       </GameGrid>
@@ -42,9 +43,10 @@ export function GameField({ className, cells, currentMove, nextMove, handleCellC
   );
 }
 
-function GameCell({ children, onClick, isWinner }) {
+function GameCell({ children, onClick, isWinner, disabled }) {
   return (
     <button
+    disabled={disabled}
       onClick={onClick}
       className={clsx(isWinner && 'bg-orange-600/10', "border border-slate-200 -ml-px -mt-px flex items-center justify-center")}
     >

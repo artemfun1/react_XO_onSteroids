@@ -1,7 +1,7 @@
-import clsx from "clsx";
-import { useEffect, useState } from "react";
+// import clsx from "clsx";
+// import { useEffect, useState } from "react";
 
-import { GameSymbol } from "./game-symbol";
+//  { GameSymbol } from "./game-symbol";
 
 // const players = [
 //   {
@@ -34,7 +34,7 @@ import { GameSymbol } from "./game-symbol";
 //   },
 // ];
 
-export function GameInfo({
+ function GameInfo({
   className,
   playersCount,
   currentMove,

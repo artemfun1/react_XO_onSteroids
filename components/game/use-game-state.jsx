@@ -1,6 +1,6 @@
-import { useState } from "react"
-import { GAME_SYMBOLS } from "./constants"
-import { computeWinner, getNextMove } from "./model"
+import { useState } from "react";
+import { GAME_SYMBOLS } from "./constantsTEST";
+import { computeWinner, getNextMove } from "./model";
 
 export function useGameState(playersCount) {
   const [{ cells, currentMove, playersTimeOver }, setGameState] = useState(
@@ -12,11 +12,10 @@ export function useGameState(playersCount) {
   );
 
   const winnerSequence = computeWinner(cells);
-  const nextMove = getNextMove(currentMove, playersCount,playersTimeOver);
+  const nextMove = getNextMove(currentMove, playersCount, playersTimeOver);
 
-
- const winnerSymbol = nextMove===currentMove ? currentMove : winnerSequence?.[0]
-
+  const winnerSymbol =
+    nextMove === currentMove ? currentMove : winnerSequence?.[0];
 
   const handleCellClick = (index) => {
     setGameState((lastGameState) => {
@@ -25,7 +24,11 @@ export function useGameState(playersCount) {
       }
       return {
         ...lastGameState,
-        currentMove: getNextMove(lastGameState.currentMove, playersCount,lastGameState.playersTimeOver),
+        currentMove: getNextMove(
+          lastGameState.currentMove,
+          playersCount,
+          lastGameState.playersTimeOver,
+        ),
         cells: lastGameState.cells.map((c, i) =>
           i === index ? lastGameState.currentMove : c,
         ),
@@ -35,11 +38,14 @@ export function useGameState(playersCount) {
 
   function handlePlayerTimeOver(symbol) {
     setGameState((lastGameState) => {
-      
       return {
         ...lastGameState,
-        playersTimeOver : [...lastGameState.playersTimeOver, symbol],
-        currentMove: getNextMove(lastGameState.currentMove, playersCount, lastGameState.playersTimeOver)
+        playersTimeOver: [...lastGameState.playersTimeOver, symbol],
+        currentMove: getNextMove(
+          lastGameState.currentMove,
+          playersCount,
+          lastGameState.playersTimeOver,
+        ),
       };
     });
   }

@@ -1,10 +1,9 @@
-import { MOVE_ORDERS } from './constants'
-
-
-
+import { MOVE_ORDERS } from "./constantsTEST";
 
 export function getNextMove(currentMove, playersCount, playersTimeOver) {
-  const slicedMoveOrder = MOVE_ORDERS.slice(0, playersCount).filter(symbol=> !playersTimeOver.includes(symbol))
+  const slicedMoveOrder = MOVE_ORDERS.slice(0, playersCount).filter(
+    (symbol) => !playersTimeOver.includes(symbol),
+  );
 
   let nextMoveIndex = slicedMoveOrder.indexOf(currentMove) + 1;
   return slicedMoveOrder[nextMoveIndex] ?? slicedMoveOrder[0];
@@ -39,11 +38,11 @@ export function computeWinner(cells, sequenceSize = 2, fieldSize = 19) {
       res[3].push(fieldSize * (j - gap) + i);
     }
 
-    const x = i % fieldSize
-    if(x < gap || x >= fieldSize - gap){
-      res.shift()
-      res.shift()
-      res.shift()
+    const x = i % fieldSize;
+    if (x < gap || x >= fieldSize - gap) {
+      res.shift();
+      res.shift();
+      res.shift();
     }
 
     return res;

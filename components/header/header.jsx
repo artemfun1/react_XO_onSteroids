@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Profile } from "../profile";
-import { UiButton } from "../uikit/ui-button";
+import { UiButton } from "../uikit";
 import { ArrowDownIcon } from "./arrow-down-icon";
 import logoSrc from "./logo.svg";
 
@@ -10,12 +10,12 @@ export function Header() {
       <Image src={logoSrc} alt="logo" />
       <div className="w-px h-8 bg-slate-200 mx-6"></div>
 
-      <UiButton className="w-44" variant="primary" size='lg'>
+      <UiButton className="w-44" variant="primary" size="lg">
         Играть
       </UiButton>
 
       <button className="ml-auto flex items-center gap-2  text-teal-600">
-        <Profile name='Paromovevg' rating='1230' />
+        <Profile name="Paromovevg" rating="1230" />
         <ArrowDownIcon />
       </button>
     </header>

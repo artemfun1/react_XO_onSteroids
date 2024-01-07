@@ -1,45 +1,46 @@
 import clsx from "clsx";
 import { useEffect, useState } from "react";
-import { Profile } from "../profile";
-import { GAME_SYMBOLS } from "./constants";
+
 import { GameSymbol } from "./game-symbol";
-import avatarCrc1 from "./images/1.png";
-import avatarCrc2 from "./images/2.png";
-import avatarCrc3 from "./images/3.png";
-import avatarCrc4 from "./images/4.png";
 
-const players = [
-  {
-    id: 1,
-    name: "Paromovevg",
-    rating: 1231,
-    avatar: avatarCrc1,
-    symbol: GAME_SYMBOLS.CROSS,
-  },
-  {
-    id: 2,
-    name: "VereIntedinglapotur",
-    rating: 850,
-    avatar: avatarCrc2,
-    symbol: GAME_SYMBOLS.ZERO,
-  },
-  {
-    id: 3,
-    name: "Lara",
-    rating: 1400,
-    avatar: avatarCrc3,
-    symbol: GAME_SYMBOLS.TRIANGLE,
-  },
-  {
-    id: 4,
-    name: "Додик",
-    rating: 760,
-    avatar: avatarCrc4,
-    symbol: GAME_SYMBOLS.SQUARE,
-  },
-];
+// const players = [
+//   {
+//     id: 1,
+//     name: "Paromovevg",
+//     rating: 1231,
+//     avatar: avatarCrc1,
+//     symbol: GAME_SYMBOLS.CROSS,
+//   },
+//   {
+//     id: 2,
+//     name: "VereIntedinglapotur",
+//     rating: 850,
+//     avatar: avatarCrc2,
+//     symbol: GAME_SYMBOLS.ZERO,
+//   },
+//   {
+//     id: 3,
+//     name: "Lara",
+//     rating: 1400,
+//     avatar: avatarCrc3,
+//     symbol: GAME_SYMBOLS.TRIANGLE,
+//   },
+//   {
+//     id: 4,
+//     name: "Додик",
+//     rating: 760,
+//     avatar: avatarCrc4,
+//     symbol: GAME_SYMBOLS.SQUARE,
+//   },
+// ];
 
-export function GameInfo({ className, playersCount, currentMove, isWinnerGame, onPlayerTimeOver }) {
+export function GameInfo({
+  className,
+  playersCount,
+  currentMove,
+  isWinnerGame,
+  onPlayerTimeOver,
+}) {
   return (
     <div
       className={clsx(
@@ -53,7 +54,7 @@ export function GameInfo({ className, playersCount, currentMove, isWinnerGame, o
           playerInfo={player}
           isRight={index % 2 === 1}
           isTimerRunning={currentMove === player.symbol && !isWinnerGame}
-          onTimeOver={()=>onPlayerTimeOver(player.symbol)}
+          onTimeOver={() => onPlayerTimeOver(player.symbol)}
         />
       ))}
     </div>
@@ -61,41 +62,39 @@ export function GameInfo({ className, playersCount, currentMove, isWinnerGame, o
 }
 
 function PlayerInfo({ playerInfo, isRight, isTimerRunning, onTimeOver }) {
-  const [seconds, setSeconds] = useState(3);
+  // const [seconds, setSeconds] = useState(3);
 
-  const minutesString = String(Math.floor(seconds / 60)).padStart(2, "0");
-  const secondsString = String(seconds % 60).padStart(2, "0");
+  // const minutesString = String(Math.floor(seconds / 60)).padStart(2, "0");
+  // const secondsString = String(seconds % 60).padStart(2, "0");
 
-  const isDanger = seconds < 10;
+  // const isDanger = seconds < 10;
 
   useEffect(() => {
     if (isTimerRunning) {
-     const interval = setInterval(() => {
+      const interval = setInterval(() => {
         setSeconds((prev) => Math.max(prev - 1, 0));
       }, 1000);
-      return ()=>{
-        clearInterval(interval)
-        setSeconds(60)
-      }
+      return () => {
+        clearInterval(interval);
+        setSeconds(60);
+      };
     }
   }, [isTimerRunning]);
 
-  useEffect(()=>{
-
-    if(seconds === 0){
-      onTimeOver()
-
+  useEffect(() => {
+    if (seconds === 0) {
+      onTimeOver();
     }
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[seconds])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [seconds]);
 
-  function getTimerColor(){
-    if(isTimerRunning){
-      return isDanger ? "text-orange-600" : "text-slate-900"
-    }
-    return 'text-slate-200'
-  }
+  // function getTimerColor() {
+  //   if (isTimerRunning) {
+  //     return isDanger ? "text-orange-600" : "text-slate-900";
+  //   }
+  //   return "text-slate-200";
+  // }
 
   return (
     <div className="flex gap-3 items-center ">
@@ -116,7 +115,8 @@ function PlayerInfo({ playerInfo, isRight, isTimerRunning, onTimeOver }) {
       <div
         className={clsx(
           "text-lg font-semibold w-[60px]",
-          isRight && "order-1", getTimerColor()
+          isRight && "order-1",
+          getTimerColor(),
         )}
       >
         {minutesString}:{secondsString}

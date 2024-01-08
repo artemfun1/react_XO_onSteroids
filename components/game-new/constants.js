@@ -1,7 +1,7 @@
-import avatarSrc1 from "./ui/images/1.png";
-import avatarSrc2 from "./ui/images/2.png";
-import avatarSrc3 from "./ui/images/3.png";
-import avatarSrc4 from "./ui/images/4.png";
+import avatarSrc1 from "./ui/images/avatar-1.png";
+import avatarSrc2 from "./ui/images/avatar-2.png";
+import avatarSrc3 from "./ui/images/avatar-3.png";
+import avatarSrc4 from "./ui/images/avatar-4.png";
 
 export const GAME_SYMBOLS = {
   ZERO: "zero",

@@ -1,5 +1,5 @@
-import { UiButton } from "../../uikit";
-import { UiModal } from "../../uikit";
+import { UiButton } from "../../uikit/ui-button";
+import { UiModal } from "../../uikit/ui-modal";
 
 export function GameOverModal({ winnerName, players }) {
   return (

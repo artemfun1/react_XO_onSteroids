@@ -1,6 +1,6 @@
-import { HistoryIcon } from "./icons/histry-icon";
 import { StarIcon } from "./icons/star-icon";
 import { UserIcon } from "./icons/user-icon";
+import { HistoryIcon } from "./icons/histry-icon";
 
 export function GameInfo({ playersCount, isRatingGame, timeMode }) {
   return (
